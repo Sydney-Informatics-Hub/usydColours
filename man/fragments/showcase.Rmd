@@ -1,0 +1,41 @@
+---
+title: "Showcase"
+author: "Darya Vanichkina"
+date: "20/12/2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Showcasing the full palette
+
+The full range of colours that this library provides us with is
+
+```{r}
+library(colorspace)
+sydneyunicolours <- read.csv("../../data/processed_fullcolours.csv")
+
+fullhexpallette <- matrix(sydneyunicolours$hex)
+rownames(fullhexpallette) <- sydneyunicolours$colourName
+swatchplot(fullhexpallette)
+
+```
+
+If we want to look at their HCL:
+
+```{r}
+par(mfrow = c(1, 1))
+hclplot(fullhexpallette)
+```
+
+```{r}
+# par(mfrow = c(3, 3))
+# for (i in c("map", "heatmap", "scatter", "spine", "bar", "pie",
+#             "perspective", "mosaic", "lines")) {
+#   demoplot(unique(mycolours$hex), type = i)
+# }
+
+```
+

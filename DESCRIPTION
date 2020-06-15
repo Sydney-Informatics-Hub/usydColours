@@ -1,0 +1,27 @@
+Package: usydColours
+Title: University of Sydney Branding for Graphs
+Version: 1.0.0
+Authors@R: 
+    c(person(given = "Darya",
+           family = "Vanichkina",
+           role = c("aut"),
+           email = "d.vanichkina@gmail.com",
+           comment = c(ORCID = "0000-0002-0406-164X")),
+      person(given = "Jazmin",
+           family = "Ozsvar",
+           role = c("aut", "cre"),
+           email = "jazmin.ozsvar@sydney.edu.au",
+           comment = c(ORCID = "0000-0002-1074-8923")))
+Description: usydColours is a colour palette for use with ggplot2 to create beautiful University of Sydney branded graphs and charts.
+License: MIT + file LICENSE
+Encoding: UTF-8
+LazyData: true
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.1.0.9000
+Imports: 
+    colorspace,
+    grDevices,
+    magrittr,
+    purrr
+Depends: 
+    R (>= 2.10)

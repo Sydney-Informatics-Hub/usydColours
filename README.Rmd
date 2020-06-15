@@ -1,0 +1,266 @@
+---
+title: "usydColours"
+author: "Jazmin Ozsvar"
+date: "04/06/2020"
+output: github_document
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library("usydColours")
+library("tidyverse")
+library("knitr")
+library("colorspace")
+```
+
+## The University of Sydney colour palettes
+
+The `usydColours` package is intended to provide a set of colour palettes for use with `ggplot2` and `plot` graphs. The palettes have been derived from The University of Sydney Branding Document V2.0, and include the primary branding palette as well as some novelty palettes that capture the spirit and landmarks of the University.
+
+For more information on University branding, refer to the following links:  
+* https://intranet.sydney.edu.au/services/marketing-communications/our-brand.html  
+* https://intranet.sydney.edu.au/content/dam/intranet/documents/services/marketing-communications/brand-documents/LR_Brand_Guidelines_V2.1_General.pdf
+
+The functionality of usydColours is based on the wonderful `wesanderson` package (https://github.com/karthik/wesanderson).
+
+### Installation
+
+```{r installation, eval=FALSE, warnings=FALSE, message=FALSE}
+library(devtools)
+
+install_github("Sydney-Informatics-Hub/usydColours")
+```
+
+### Usage
+
+Below is a list of the currently available palettes.
+
+```{r usage, echo=FALSE, warnings=FALSE, message=FALSE}
+
+# Grab all palette names
+names(usyd_palettes)
+
+```
+
+### Qualitative palettes
+
+```{r palettes_qualitative, echo=TRUE, warnings=FALSE, message=FALSE, fig.align='center', fig.width=5, fig.height=3}
+
+# Primary
+util_visualise_pal(usyd_palettes[["primary"]])
+
+# Extended
+util_visualise_pal(usyd_palettes[["extended"]])
+
+# Secondary
+util_visualise_pal(usyd_palettes[["secondary"]])
+
+# Pastel
+util_visualise_pal(usyd_palettes[["pastel"]])
+
+# Bright
+util_visualise_pal(usyd_palettes[["bright"]])
+
+```
+
+
+### Sequential palettes
+
+```{r palettes_sequential, echo=TRUE, warnings=FALSE, message=FALSE, fig.align='center', fig.width=5, fig.height=3}
+
+# Flame tree
+util_visualise_pal(usyd_palettes[["flametree"]])
+
+# Jacaranda
+util_visualise_pal(usyd_palettes[["jacaranda"]])
+
+# Sandstone
+util_visualise_pal(usyd_palettes[["sandstone"]])
+
+# Harbour
+util_visualise_pal(usyd_palettes[["harbour"]])
+
+# Ochre
+util_visualise_pal(usyd_palettes[["ochre"]])
+
+# Greyscale
+util_visualise_pal(usyd_palettes[["greyscale"]])
+
+```
+
+
+### Diverging palettes
+
+```{r palettes_diverging, echo=TRUE, warnings=FALSE, message=FALSE, fig.align='center', fig.width=5, fig.height=3}
+
+# Complementary (red/green)
+util_visualise_pal(usyd_palettes[["complementary_ReGr"]])
+
+# Complementary (red/blue)
+util_visualise_pal(usyd_palettes[["complementary_ReBl"]])
+
+# Muted
+util_visualise_pal(usyd_palettes[["muted"]])
+
+# Traffic light
+util_visualise_pal(usyd_palettes[["trafficlight"]])
+
+# Diverging (blue/red)
+util_visualise_pal(usyd_palettes[["diverging_blue_red"]])
+
+# Diverging (blue/orange)
+util_visualise_pal(usyd_palettes[["diverging_blue_orange"]])
+```
+
+### Use with ggplot2
+
+Below are some examples of `usydColours` in action.
+
+#### Categorical data
+
+```{r usage_categorical, echo=TRUE, message=FALSE, warning=FALSE, fig.height=3, fig.align='center'}
+
+# Bar graph with the primary palette
+diamonds %>%
+  filter(price < 1000) %>%
+  ggplot(aes(price, fill = cut)) +
+    geom_histogram(colour = "black", position = "dodge", binwidth = 250) +
+    theme_bw() +
+    scale_fill_manual(values = usyd_palette("primary"))
+
+# Density graph with the muted palette
+iris %>%
+  ggplot(aes(x = Sepal.Length, fill = Species)) + 
+    geom_density() +
+    theme_bw() +
+    facet_wrap(. ~ Species) +
+    scale_fill_manual(values = usyd_palette("muted")) 
+
+# Scatter plot using the jacaranda palette
+diamonds %>%
+  filter(row_number() %% 5 == 1) %>%
+  filter(carat < 3) %>%
+  filter(clarity %in% c("SI2", "SI1", "VS2", "VVS2")) %>%
+  ggplot(aes(carat, price, colour = clarity)) +
+    geom_jitter(alpha = 0.7) +
+    theme_bw() +
+    scale_colour_manual(values = usyd_palette("jacaranda"))
+
+```
+
+
+#### Continuous data
+
+Use `usyd_palette` to interpolate colours between the discrete colours of the available palettes for continuous data. Remember to supply values for `n` and set `type = "continuous"`.   
+  
+Tip: you can also use `usyd_palette` to generate more colours of your favourite palette for categorical plots too!
+
+```{r usage_continuous1, echo=TRUE, message=FALSE, warning=FALSE, fig.height=3, fig.align='center'}
+
+# Heatmap
+mpg %>%
+  count(class, drv) %>%
+  complete(class, drv, fill = list(n = 0L)) %>%
+  ggplot(aes(x = class, y = drv)) +
+  geom_tile(mapping = aes(fill = n)) +
+  theme_bw() +
+  scale_fill_gradientn(colours = usyd_palette("flametree", 100, type = "continuous"))
+```
+
+```{r usage_continuous2, echo=TRUE, message=FALSE, warning=FALSE, fig.height=3, fig.align='center'}
+library(maps)
+library(mapproj)
+
+# Chloropleth
+# This example is from: https://cran.r-project.org/web/packages/viridis/vignettes/intro-to-viridis.html
+unemp <- read.csv("http://datasets.flowingdata.com/unemployment09.csv",
+                  header = FALSE, stringsAsFactors = FALSE)
+names(unemp) <- c("id", "state_fips", "county_fips", "name", "year",
+                  "?", "?", "?", "rate")
+unemp$county <- tolower(gsub(" County, [A-Z]{2}", "", unemp$name))
+unemp$county <- gsub("^(.*) parish, ..$","\\1", unemp$county)
+unemp$state <- gsub("^.*([A-Z]{2}).*$", "\\1", unemp$name)
+
+county_df <- map_data("county", projection = "albers", parameters = c(39, 45))
+names(county_df) <- c("long", "lat", "group", "order", "state_name", "county")
+county_df$state <- state.abb[match(county_df$state_name, tolower(state.name))]
+county_df$state_name <- NULL
+
+state_df <- map_data("state", projection = "albers", parameters = c(39, 45))
+
+choropleth <- merge(county_df, unemp, by = c("state", "county"))
+choropleth <- choropleth[order(choropleth$order), ]
+
+
+ggplot(choropleth, aes(long, lat, group = group)) +
+  geom_polygon(aes(fill = rate), colour = alpha("white", 1 / 2), size = 0.2) +
+  geom_polygon(data = state_df, colour = "white", fill = NA) +
+  coord_fixed() +
+  theme_void() +
+  ggtitle("US unemployment rate by county") +
+  theme(axis.line = element_blank(), axis.text = element_blank(),
+        axis.ticks = element_blank(), axis.title = element_blank()) +
+  scale_fill_gradientn(colours = usyd_palette("muted", 100, type = "continuous"))
+
+```
+
+### Defining custom palettes
+
+Want to make your own palette? No problem! You can also define your own palette by selecting  colours of your choice with `usyd_pal_gen`.
+
+Below is the full list of colour names contained in `usydColours`.
+
+```{r swatchplot, echo=FALSE, warning=FALSE, message=FALSE, fig.align='center'}
+
+# Load required data
+load(file = "R/sysdata.rda")
+
+fullhexpallette <- matrix(sydneyunicolours$hex)
+rownames(fullhexpallette) <- sydneyunicolours$colourName
+
+# Display University branding colours
+usydSwatchplot <- swatchplot(fullhexpallette)
+
+```
+
+After you've decided on what colours you want, use `usyd_pal_gen` as shown below to make a custom palette.
+
+```{r new_palette, echo=TRUE, warning=FALSE, message=FALSE, fig.align='center', fig.height=4, fig.width=7}
+
+# Define a new palette
+my_palette <- usyd_pal_gen(
+  "SecondaryDarkSeafoam", 
+  "SecondaryLightSeafoam", 
+  "AccentYellow", 
+  "SecondaryLemon", 
+  "SecondaryLilac") 
+
+# Use the new palette
+diamonds %>%
+  filter(price < 1000) %>%
+  ggplot(aes(price, fill = cut)) +
+  geom_histogram(colour = "black", position = "dodge", binwidth = 250) +
+  theme_bw() +
+  scale_fill_manual(values = my_palette)
+```
+
+
+### RGB values and hex codes of colours
+
+You can also refer to this table for RGB values and hex codes if you'd like to apply them in Photoshop or any other code. 
+
+```{r hexcodes, echo=FALSE, warning=FALSE, message=FALSE}
+
+sydneyunicolours2 <- sydneyunicolours %>%
+  dplyr::select(
+    colourName,
+    R,
+    G,
+    B,
+    hex
+  )
+
+knitr::kable(sydneyunicolours2)
+
+```
