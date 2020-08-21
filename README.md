@@ -18,6 +18,8 @@ links:
 \*
 <https://intranet.sydney.edu.au/content/dam/intranet/documents/services/marketing-communications/brand-documents/LR_Brand_Guidelines_V2.1_General.pdf>
 
+For University branding R markdown presentation templates, go [here](https://github.com/emitanaka/USYDTemplates).
+
 The functionality of usydColours is based on the wonderful `wesanderson`
 package (<https://github.com/karthik/wesanderson>).
 
