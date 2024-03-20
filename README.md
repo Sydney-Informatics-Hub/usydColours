@@ -26,9 +26,8 @@ package (<https://github.com/karthik/wesanderson>).
 ### Installation
 
 ``` r
-library(devtools)
-
-install_github("Sydney-Informatics-Hub/usydColours")
+install.packages("pak")
+pak::pkg_install("Sydney-Informatics-Hub/usydColours")
 ```
 
 ### Usage
