@@ -3,6 +3,9 @@ usydColours
 Jazmin Ozsvar
 04/06/2020
 
+[![Github All Releases](https://img.shields.io/github/downloads/Sydney-Informatics-Hub/usydColourstotal.svg)]()
+
+
 ## The University of Sydney colour palettes
 
 The `usydColours` package is intended to provide a set of colour
