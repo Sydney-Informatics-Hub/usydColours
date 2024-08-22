@@ -94,6 +94,9 @@ util_visualise_pal(usyd_palettes[["greyscale"]])
 
 ```{r palettes_diverging, echo=TRUE, warnings=FALSE, message=FALSE, fig.align='center', fig.width=5, fig.height=3}
 
+# Modern (red/green)
+util_visualise_pal(usyd_palettes[["modern_diverging"]])
+
 # Complementary (red/green)
 util_visualise_pal(usyd_palettes[["complementary_ReGr"]])
 
@@ -230,11 +233,11 @@ After you've decided on what colours you want, use `usyd_pal_gen` as shown below
 
 # Define a new palette
 my_palette <- usyd_pal_gen(
-  "SecondaryDarkSeafoam", 
-  "SecondaryLightSeafoam", 
-  "AccentYellow", 
-  "SecondaryLemon", 
-  "SecondaryLilac") 
+  "UpdatedOchre", 
+  "LightOchre", 
+  "NeutralGrey", 
+  "Eucalypt", 
+  "DarkEucalypt") 
 
 # Use the new palette
 diamonds %>%
@@ -264,3 +267,5 @@ sydneyunicolours2 <- sydneyunicolours %>%
 knitr::kable(sydneyunicolours2)
 
 ```
+
+
