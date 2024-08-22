@@ -3,7 +3,6 @@ usydColours
 Jazmin Ozsvar
 04/06/2020
 
-
 ## The University of Sydney colour palettes
 
 The `usydColours` package is intended to provide a set of colour
@@ -19,30 +18,28 @@ links:
 \*
 <https://intranet.sydney.edu.au/content/dam/intranet/documents/services/marketing-communications/brand-documents/LR_Brand_Guidelines_V2.1_General.pdf>
 
-For University branding R markdown presentation templates, go [here](https://github.com/emitanaka/USYDTemplates).
-
 The functionality of usydColours is based on the wonderful `wesanderson`
 package (<https://github.com/karthik/wesanderson>).
 
 ### Installation
 
 ``` r
-install.packages("pak")
-pak::pkg_install("Sydney-Informatics-Hub/usydColours")
+library(devtools)
+
+install_github("Sydney-Informatics-Hub/usydColours")
 ```
 
 ### Usage
 
-Below is a list of the currently available
-    palettes.
+Below is a list of the currently available palettes.
 
-    ##  [1] "primary"               "extended"              "secondary"            
-    ##  [4] "pastel"                "complementary_ReGr"    "complementary_ReBl"   
-    ##  [7] "bright"                "muted"                 "trafficlight"         
-    ## [10] "heatmap"               "flametree"             "jacaranda"            
-    ## [13] "harbour"               "sandstone"             "ochre"                
-    ## [16] "greyscale"             "BlGrYe"                "BlOr"                 
-    ## [19] "diverging_blue_red"    "diverging_blue_orange"
+    ##  [1] "primary"               "modern_diverging"      "extended"             
+    ##  [4] "secondary"             "pastel"                "complementary_ReGr"   
+    ##  [7] "complementary_ReBl"    "bright"                "muted"                
+    ## [10] "trafficlight"          "heatmap"               "flametree"            
+    ## [13] "jacaranda"             "harbour"               "sandstone"            
+    ## [16] "ochre"                 "greyscale"             "BlGrYe"               
+    ## [19] "BlOr"                  "diverging_blue_red"    "diverging_blue_orange"
 
 ### Qualitative palettes
 
@@ -128,46 +125,53 @@ util_visualise_pal(usyd_palettes[["greyscale"]])
 ### Diverging palettes
 
 ``` r
+# Modern (red/green)
+util_visualise_pal(usyd_palettes[["modern_diverging"]])
+```
+
+<img src="README_files/figure-gfm/palettes_diverging-1.png" style="display: block; margin: auto;" />
+
+``` r
 # Complementary (red/green)
 util_visualise_pal(usyd_palettes[["complementary_ReGr"]])
 ```
 
-<img src="README_files/figure-gfm/palettes_diverging-1.png" style="display: block; margin: auto;" />
+<img src="README_files/figure-gfm/palettes_diverging-2.png" style="display: block; margin: auto;" />
 
 ``` r
 # Complementary (red/blue)
 util_visualise_pal(usyd_palettes[["complementary_ReBl"]])
 ```
 
-<img src="README_files/figure-gfm/palettes_diverging-2.png" style="display: block; margin: auto;" />
+<img src="README_files/figure-gfm/palettes_diverging-3.png" style="display: block; margin: auto;" />
 
 ``` r
 # Muted
 util_visualise_pal(usyd_palettes[["muted"]])
 ```
 
-<img src="README_files/figure-gfm/palettes_diverging-3.png" style="display: block; margin: auto;" />
+<img src="README_files/figure-gfm/palettes_diverging-4.png" style="display: block; margin: auto;" />
 
 ``` r
 # Traffic light
 util_visualise_pal(usyd_palettes[["trafficlight"]])
 ```
 
-<img src="README_files/figure-gfm/palettes_diverging-4.png" style="display: block; margin: auto;" />
+<img src="README_files/figure-gfm/palettes_diverging-5.png" style="display: block; margin: auto;" />
 
 ``` r
 # Diverging (blue/red)
 util_visualise_pal(usyd_palettes[["diverging_blue_red"]])
 ```
 
-<img src="README_files/figure-gfm/palettes_diverging-5.png" style="display: block; margin: auto;" />
+<img src="README_files/figure-gfm/palettes_diverging-6.png" style="display: block; margin: auto;" />
 
 ``` r
 # Diverging (blue/orange)
 util_visualise_pal(usyd_palettes[["diverging_blue_orange"]])
 ```
 
-<img src="README_files/figure-gfm/palettes_diverging-6.png" style="display: block; margin: auto;" />
+<img src="README_files/figure-gfm/palettes_diverging-7.png" style="display: block; margin: auto;" />
 
 ### Use with ggplot2
 
@@ -220,7 +224,7 @@ of the available palettes for continuous data. Remember to supply values
 for `n` and set `type = "continuous"`.
 
 Tip: you can also use `usyd_palette` to generate more colours of your
-favourite palette for categorical plots too\!
+favourite palette for categorical plots too!
 
 ``` r
 # Heatmap
@@ -275,11 +279,10 @@ ggplot(choropleth, aes(long, lat, group = group)) +
 
 ### Defining custom palettes
 
-Want to make your own palette? No problem\! You can also define your own
+Want to make your own palette? No problem! You can also define your own
 palette by selecting colours of your choice with `usyd_pal_gen`.
 
-Below is the full list of colour names contained in
-`usydColours`.
+Below is the full list of colour names contained in `usydColours`.
 
 <img src="README_files/figure-gfm/swatchplot-1.png" style="display: block; margin: auto;" />
 
@@ -289,11 +292,11 @@ shown below to make a custom palette.
 ``` r
 # Define a new palette
 my_palette <- usyd_pal_gen(
-  "SecondaryDarkSeafoam", 
-  "SecondaryLightSeafoam", 
-  "AccentYellow", 
-  "SecondaryLemon", 
-  "SecondaryLilac") 
+  "UpdatedOchre", 
+  "LightOchre", 
+  "NeutralGrey", 
+  "Eucalypt", 
+  "DarkEucalypt") 
 
 # Use the new palette
 diamonds %>%
@@ -312,7 +315,7 @@ You can also refer to this table for RGB values and hex codes if you’d
 like to apply them in Photoshop or any other code.
 
 | colourName            |   R |   G |   B | hex      |
-| :-------------------- | --: | --: | --: | :------- |
+|:----------------------|----:|----:|----:|:---------|
 | AccentBlue            |   1 |  72 | 164 | \#0148A4 |
 | AccentGrey            | 241 | 241 | 241 | \#F1F1F1 |
 | AccentYellow          | 255 | 184 |   0 | \#FFB800 |
@@ -336,3 +339,8 @@ like to apply them in Photoshop or any other code.
 | SecondaryPeach        | 247 | 156 | 114 | \#F79C72 |
 | SecondaryPink         | 214 |  81 | 157 | \#D6519D |
 | SecondaryPurple       | 127 |  63 | 152 | \#7F3F98 |
+| DarkEucalypt          |  37 |  88 |  77 | \#25584D |
+| Eucalypt              | 113 | 164 | 153 | \#71A499 |
+| NeutralGrey           | 224 | 224 | 224 | \#E0E0E0 |
+| LightOchre            | 255 | 173 | 140 | \#FFAD8C |
+| UpdatedOchre          | 231 |  71 |  38 | \#E74726 |

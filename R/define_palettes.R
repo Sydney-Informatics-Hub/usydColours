@@ -34,6 +34,7 @@ usyd_cols <- function(...) {
 #' @export
 usyd_palettes <- list(
   `primary`  = usyd_cols("MasterbrandCharcoal", "MasterbrandOchre", "AccentBlue", "AccentYellow", "AccentGrey"),
+  `modern_diverging` =usyd_cols("DarkEucalypt","Eucalypt","NeutralGrey","LightOchre","UpdatedOchre"),
   `extended`  = usyd_cols("MasterbrandCharcoal", "MasterbrandOchre", "AccentBlue", "AccentYellow", "SecondaryDarkGreen",
                                    "SecondaryBlue", "SecondaryPeach", "SecondaryBeige", "SecondaryLemon", "SecondaryLightGreen",
                                    "SecondaryDarkSeafoam", "SecondaryLightSeafoam", "SecondaryLightBlue", "SecondaryLilac",
