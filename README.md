@@ -33,50 +33,72 @@ install_github("Sydney-Informatics-Hub/usydColours")
 
 Below is a list of the currently available palettes.
 
-    ##  [1] "primary"               "modern_diverging"      "extended"             
-    ##  [4] "secondary"             "pastel"                "complementary_ReGr"   
-    ##  [7] "complementary_ReBl"    "bright"                "muted"                
-    ## [10] "trafficlight"          "heatmap"               "flametree"            
-    ## [13] "jacaranda"             "harbour"               "sandstone"            
-    ## [16] "ochre"                 "greyscale"             "BlGrYe"               
-    ## [19] "BlOr"                  "diverging_blue_red"    "diverging_blue_orange"
+    ##  [1] "modern"                "modern_extended"       "modern_tertiary"      
+    ##  [4] "primary"               "modern_diverging"      "extended"             
+    ##  [7] "secondary"             "pastel"                "complementary_ReGr"   
+    ## [10] "complementary_ReBl"    "bright"                "muted"                
+    ## [13] "trafficlight"          "heatmap"               "flametree"            
+    ## [16] "jacaranda"             "harbour"               "sandstone"            
+    ## [19] "ochre"                 "greyscale"             "BlGrYe"               
+    ## [22] "BlOr"                  "diverging_blue_red"    "diverging_blue_orange"
 
 ### Qualitative palettes
+
+``` r
+# Modern
+util_visualise_pal(usyd_palettes[["modern"]])
+```
+
+<img src="README_files/figure-gfm/palettes_qualitative-1.png" style="display: block; margin: auto;" />
+
+``` r
+# Modern Extended
+util_visualise_pal(usyd_palettes[["modern_extended"]])
+```
+
+<img src="README_files/figure-gfm/palettes_qualitative-2.png" style="display: block; margin: auto;" />
+
+``` r
+# Modern Tertiary
+util_visualise_pal(usyd_palettes[["modern_tertiary"]])
+```
+
+<img src="README_files/figure-gfm/palettes_qualitative-3.png" style="display: block; margin: auto;" />
 
 ``` r
 # Primary
 util_visualise_pal(usyd_palettes[["primary"]])
 ```
 
-<img src="README_files/figure-gfm/palettes_qualitative-1.png" style="display: block; margin: auto;" />
+<img src="README_files/figure-gfm/palettes_qualitative-4.png" style="display: block; margin: auto;" />
 
 ``` r
 # Extended
 util_visualise_pal(usyd_palettes[["extended"]])
 ```
 
-<img src="README_files/figure-gfm/palettes_qualitative-2.png" style="display: block; margin: auto;" />
+<img src="README_files/figure-gfm/palettes_qualitative-5.png" style="display: block; margin: auto;" />
 
 ``` r
 # Secondary
 util_visualise_pal(usyd_palettes[["secondary"]])
 ```
 
-<img src="README_files/figure-gfm/palettes_qualitative-3.png" style="display: block; margin: auto;" />
+<img src="README_files/figure-gfm/palettes_qualitative-6.png" style="display: block; margin: auto;" />
 
 ``` r
 # Pastel
 util_visualise_pal(usyd_palettes[["pastel"]])
 ```
 
-<img src="README_files/figure-gfm/palettes_qualitative-4.png" style="display: block; margin: auto;" />
+<img src="README_files/figure-gfm/palettes_qualitative-7.png" style="display: block; margin: auto;" />
 
 ``` r
 # Bright
 util_visualise_pal(usyd_palettes[["bright"]])
 ```
 
-<img src="README_files/figure-gfm/palettes_qualitative-5.png" style="display: block; margin: auto;" />
+<img src="README_files/figure-gfm/palettes_qualitative-8.png" style="display: block; margin: auto;" />
 
 ### Sequential palettes
 
@@ -180,13 +202,13 @@ Below are some examples of `usydColours` in action.
 #### Categorical data
 
 ``` r
-# Bar graph with the primary palette
+# Bar graph with the tertiary palette
 diamonds %>%
   filter(price < 1000) %>%
   ggplot(aes(price, fill = cut)) +
     geom_histogram(colour = "black", position = "dodge", binwidth = 250) +
     theme_bw() +
-    scale_fill_manual(values = usyd_palette("primary"))
+    scale_fill_manual(values = usyd_palette("modern_tertiary"))
 ```
 
 <img src="README_files/figure-gfm/usage_categorical-1.png" style="display: block; margin: auto;" />
@@ -272,7 +294,7 @@ ggplot(choropleth, aes(long, lat, group = group)) +
   ggtitle("US unemployment rate by county") +
   theme(axis.line = element_blank(), axis.text = element_blank(),
         axis.ticks = element_blank(), axis.title = element_blank()) +
-  scale_fill_gradientn(colours = usyd_palette("muted", 100, type = "continuous"))
+  scale_fill_gradientn(colours = usyd_palette("modern_tertiary", 100, type = "continuous"))
 ```
 
 <img src="README_files/figure-gfm/usage_continuous2-1.png" style="display: block; margin: auto;" />
@@ -344,3 +366,13 @@ like to apply them in Photoshop or any other code.
 | NeutralGrey           | 224 | 224 | 224 | \#E0E0E0 |
 | LightOchre            | 255 | 173 | 140 | \#FFAD8C |
 | UpdatedOchre          | 231 |  71 |  38 | \#E74726 |
+| Ochre                 | 231 |  71 |  38 | \#E74726 |
+| White                 | 255 | 255 | 255 | \#FFFFFF |
+| Black                 |   0 |   0 |   0 | \#000000 |
+| LightGrey             | 230 | 231 | 233 | \#E6E7E9 |
+| Charcoal              |  66 |  65 |  67 | \#424143 |
+| Sandstone             | 251 | 238 | 226 | \#FBEEE2 |
+| HeritageRose          | 218 | 168 | 162 | \#DAA8A2 |
+| Navy                  |  27 |  53 |  94 | \#1B355E |
+| Eucalypt              | 113 | 164 | 153 | \#71A499 |
+| Jacaranda             | 143 | 158 | 200 | \#8F9EC8 |
