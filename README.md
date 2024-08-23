@@ -1,6 +1,10 @@
 usydColours
 ================
-Jazmin Ozsvar
+v2.0.0 Henry Lydecker (Latest)
+Q3 2024
+v1.2.0 Henry Lydecker
+01/05/2022
+v1.0.0 Jazmin Ozsvar
 04/06/2020
 
 ## The University of Sydney colour palettes
