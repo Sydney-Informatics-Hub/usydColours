@@ -47,6 +47,15 @@ names(usyd_palettes)
 
 ```{r palettes_qualitative, echo=TRUE, warnings=FALSE, message=FALSE, fig.align='center', fig.width=5, fig.height=3}
 
+# Modern
+util_visualise_pal(usyd_palettes[["modern"]])
+
+# Modern Extended
+util_visualise_pal(usyd_palettes[["modern_extended"]])
+
+# Modern Tertiary
+util_visualise_pal(usyd_palettes[["modern_tertiary"]])
+
 # Primary
 util_visualise_pal(usyd_palettes[["primary"]])
 
@@ -124,13 +133,13 @@ Below are some examples of `usydColours` in action.
 
 ```{r usage_categorical, echo=TRUE, message=FALSE, warning=FALSE, fig.height=3, fig.align='center'}
 
-# Bar graph with the primary palette
+# Bar graph with the tertiary palette
 diamonds %>%
   filter(price < 1000) %>%
   ggplot(aes(price, fill = cut)) +
     geom_histogram(colour = "black", position = "dodge", binwidth = 250) +
     theme_bw() +
-    scale_fill_manual(values = usyd_palette("primary"))
+    scale_fill_manual(values = usyd_palette("modern_tertiary"))
 
 # Density graph with the muted palette
 iris %>%
@@ -204,7 +213,7 @@ ggplot(choropleth, aes(long, lat, group = group)) +
   ggtitle("US unemployment rate by county") +
   theme(axis.line = element_blank(), axis.text = element_blank(),
         axis.ticks = element_blank(), axis.title = element_blank()) +
-  scale_fill_gradientn(colours = usyd_palette("muted", 100, type = "continuous"))
+  scale_fill_gradientn(colours = usyd_palette("modern_tertiary", 100, type = "continuous"))
 
 ```
 
