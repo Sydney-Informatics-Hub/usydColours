@@ -1,9 +1,6 @@
 usydColours
 ================
 
-    !!! For Python equivalent, see [Luke Thompson's USyd-colours](https://github.com/luke-a-thompson/PyUSYD_Colors) pypi package: https://pypi.org/project/usyd-colors/
-
-
 ## The University of Sydney colour palettes
 
 The `usydColours` package is intended to provide a set of colour
@@ -21,6 +18,9 @@ links:
 
 The functionality of usydColours is based on the wonderful `wesanderson`
 package (<https://github.com/karthik/wesanderson>).
+
+### Python equivalent
+FYI For Python equivalent, see [Luke Thompson's USyd-colours](https://github.com/luke-a-thompson/PyUSYD_Colors) pypi package: https://pypi.org/project/usyd-colors/
 
 ### Installation
 
